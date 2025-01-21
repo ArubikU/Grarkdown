@@ -4,7 +4,6 @@ import re
 
 import graphviz
 
-os.environ["PATH"] += os.pathsep + 'C:/Users/ejane/scoop/apps/graphviz/12.2.1/bin'
 selfpath = os.path.abspath(os.path.dirname(__file__))
 
 def markdown_to_graphviz_advanced(markdown_text, output_file="output_diagram", options=None):
