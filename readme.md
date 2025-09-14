@@ -157,7 +157,6 @@ Grarkdown is a lightweight tool to generate beautiful, structured diagrams from 
 
 # {Service} [svc]
 ### OPT CLUSTER Compute
-
 ## F_RELA
 - TO [gw] {request} [style=bold, color=#1976D2, arrowhead=vee]
 - TO [svc] {forward} [style=dashed, arrowhead=diamond]

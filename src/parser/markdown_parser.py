@@ -24,14 +24,13 @@ def parse_markdown(markdown_text: str) -> Diagram:
     if inline_stylesheet_match:
         diagram.inline_stylesheet = inline_stylesheet_match.group(1).strip()
 
-
     # Node blocks with optional sections (VAR, FUNC, F_RELA). Name accepts any chars until '}'.
     blocks = re.findall(
         r"#\s*{([^}]+)}\s+\[(\w+)\]\s*\n"
-        r"((?:### OPT .*?\n)*)?"  # optional options lines
-        r"(?:## VAR(.*?)## END VAR\n)?"  # optional VAR block
-        r"(?:## FUNC(.*?)## END FUNC\n)?"  # optional FUNC block
-        r"(?:## F_RELA(.*?)## END F_RELA)?",  # optional relations block (capture inner only)
+        r"((?:### OPT .*?\n)*)?"                  # optional options lines
+        r"(?:## VAR(.*?)## END VAR\s*)?"          # optional VAR block
+        r"(?:## FUNC(.*?)## END FUNC\s*)?"        # optional FUNC block
+        r"(?:## F_RELA(.*?)## END F_RELA\s*)?",   # optional relations block
         markdown_text,
         re.DOTALL,
     )
