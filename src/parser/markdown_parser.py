@@ -6,9 +6,10 @@ from src.domain.relation import Relation
 def parse_attributes(line: str) -> dict:
     """Parses attributes like [key=value, key2=value2]"""
     attrs = {}
-    matches = re.findall(r"(\w+)\s*=\s*([\w\.\/:\-]+)", line)
+    # Captura hasta coma o cierre de corchete
+    matches = re.findall(r"(\w+)\s*=\s*([^,\]]+)", line)
     for key, value in matches:
-        attrs[key] = value
+        attrs[key] = value.strip()
     return attrs
 
 def parse_markdown(markdown_text: str) -> Diagram:
@@ -120,7 +121,6 @@ def parse_markdown(markdown_text: str) -> Diagram:
                     continue
 
                 target_key = target_key_match.group(1)
-
                 attrs = parse_attributes(line)
 
                 relation = None
@@ -140,7 +140,6 @@ def parse_markdown(markdown_text: str) -> Diagram:
                     diagram.add_relation(relation1)
                     diagram.add_relation(relation2)
                     continue
-
                 if relation:
                     relation.style = attrs.get('style')
                     relation.color = attrs.get('color')
